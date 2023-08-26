@@ -28,7 +28,15 @@ namespace SitecoreExtension.MediaUploadBatch.Command
             if (UIUtil.UseFlashUpload() || context.Items.Length != 1)
                 return CommandState.Hidden;
             Item obj = context.Items[0];
-            return !obj.Access.CanCreate() || !obj.Access.CanRead() || !obj.Access.CanWriteLanguage() ? CommandState.Disabled : base.QueryState(context);
+
+            if(obj.Paths.FullPath.Contains("/sitecore/media library"))
+            {
+                return !obj.Access.CanCreate() || !obj.Access.CanRead() || !obj.Access.CanWriteLanguage() ? CommandState.Disabled : base.QueryState(context);
+            }
+            else
+            {
+                return CommandState.Hidden;
+            }
         }
 
         protected void Run(ClientPipelineArgs args)
