@@ -44,7 +44,6 @@ namespace SitecoreExtension.MediaUploadBatch.Processor
                             Log.Audit((object)this, "Upload: {0}", file1.FileName);
                             foreach (CustomMediaUploadResult mediaUploadResult in mediaUploadResultList)
                                 this.ProcessItem(args, (MediaItem)mediaUploadResult.Item, mediaUploadResult.Path);
-                            //}
                         }
                         catch (Exception ex)
                         {
